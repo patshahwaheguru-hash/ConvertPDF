@@ -1,4 +1,4 @@
-name: pdf_converter
+name: convertPDF
 description: Convert JPG and Excel files to PDF
 
 publish_to: 'none'
