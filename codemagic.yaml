@@ -6,6 +6,7 @@ workflows:
     environment:
       flutter: 3.24.3
       xcode: latest
+    working_directory: .  # <-- THIS IS THE FIX
     cache:
       cache_paths:
         - $HOME/.gradle/caches
@@ -20,4 +21,4 @@ workflows:
     publishing:
       email:
         recipients:
-          - your_email@gmail.com  # optional: put your email to get APK link
+          - your_email@gmail.com
