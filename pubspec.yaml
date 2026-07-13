@@ -10,8 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  printing: 5.11.1  # <- NO ^ HERE. PINNED VERSION
-  pdf: 3.10.7       # <- NO ^ HERE. PINNED VERSION
+  printing: 5.11.1   # Pinned for Flutter 3.3.10
+  pdf: 3.10.7        # Pinned for Flutter 3.3.10
+  file_picker: 5.3.4 # Pinned for Flutter 3.3.10
 
 flutter:
   uses-material-design: true
