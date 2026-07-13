@@ -1,8 +1,21 @@
+name: convertpdf
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.3.0"
+
 dependencies:
   flutter:
     sdk: flutter
-  printing: 5.10.3   # <- DOWNGRADED
-  pdf: 3.10.4        # <- DOWNGRADED to match printing
+  printing: 5.10.3   # FORCED OLD VERSION
+  pdf: 3.10.4        # MUST MATCH PRINTING
   file_picker: 5.3.4
-  dependency_overrides:
-  pdf: 3.10.4
+
+dependency_overrides:
+  pdf: 3.10.4        # FORCE THIS VERSION
+
+flutter:
+  uses-material-design: true
