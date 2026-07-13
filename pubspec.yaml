@@ -10,12 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  printing: 5.10.3   # FORCED OLD VERSION
-  pdf: 3.10.4        # MUST MATCH PRINTING
+  printing: 5.10.3
+  pdf: 3.10.4
   file_picker: 5.3.4
 
 dependency_overrides:
-  pdf: 3.10.4        # FORCE THIS VERSION
+  pdf: 3.10.4
 
 flutter:
   uses-material-design: true
