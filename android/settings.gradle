@@ -1,24 +1,5 @@
-pluginManagement {
-    def flutterSdkPath = {
-        def properties = new Properties()
-        def file = new File(settingsDir, "local.properties")
-        if (file.exists()) {
-            file.withReader("UTF-8") { reader -> properties.load(reader) }
-        }
-        def sdkPath = properties.getProperty("flutter.sdk")
-        if (sdkPath == null) {
-            throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-        }
-        return sdkPath
-    }();
+include ':app'
 
-    includeBuild("${flutterSdkPath}/packages/flutter_tools/gradle")
-}
+def flutterProjectRoot = $rootDir.absoluteFile.getParentFile().toPath()
 
-plugins {
-    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
-    id "com.android.application" version "8.1.0" apply false
-    id "org.jetbrains.kotlin.android" version "1.8.22" apply false
-}
-
-include ":app"
+apply from: "$flutterProjectRoot/packages/flutter_tools/gradle/app_plugin_loader.gradle"
