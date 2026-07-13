@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -40,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _pickAndConvert() async {
     setState(() { _statusMessage = 'Picking file...'; });
-    
+
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.any,
@@ -102,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 _statusMessage,
                 style: TextStyle(
                   fontSize: 16,
-                  color: _statusMessage.contains('Error') ? Colors.red : Colors.black,
+                  color: _statusMessage.contains('Error')? Colors.red : Colors.black,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -113,18 +112,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: _pdfBytes != null ? _printPdf : null,
+              onPressed: _pdfBytes!= null? _printPdf : null,
               child: const Text('Print PDF'),
             ),
             const SizedBox(height: 20),
-            // NO size: parameter here
-            if (_pdfBytes != null)
+            // NO PDFPREVIEW HERE - REMOVED TO FIX BUILD
+            if (_pdfBytes!= null)
               Expanded(
-                child: PdfPreview(
-                  build: (format) => _pdfBytes!,
-                  allowPrinting: true,
-                  allowSharing: true,
-                  initialPageFormat: PdfPageFormat.a4,
+                child: Container(
+                  color: Colors.grey[200],
+                  child: const Center(
+                    child: Text('PDF Created! \nTap Print PDF button above', textAlign: TextAlign.center),
+                  ),
                 ),
               ),
           ],
