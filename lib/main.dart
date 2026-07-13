@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:path_provider/path_provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -28,7 +27,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _status = 'Ready';
-  String? _path;
 
   Future<void> _createPdf() async {
     setState(() => _status = 'Picking file...');
@@ -39,14 +37,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(build: (pw.Context context) => pw.Center(child: pw.Text(result.files.single.name))));
 
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/converted.pdf');
+    // Save to app temp directory - works without path_provider
+    final file = File('${Directory.systemTemp.path}/converted.pdf');
     await file.writeAsBytes(await pdf.save());
 
-    setState(() {
-      _status = 'PDF Saved!';
-      _path = file.path;
-    });
+    setState(() => _status = 'PDF Saved to:\n${file.path}');
   }
 
   @override
@@ -54,10 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(title: const Text('ConvertPDF')),
       body: Center(child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text(_status, textAlign: TextAlign.center),
-        const SizedBox(height: 20),
+        Padding(padding: const EdgeInsets.all(16), child: Text(_status, textAlign: TextAlign.center)),
         ElevatedButton(onPressed: _createPdf, child: const Text('Pick File & Create PDF')),
-        if (_path != null) Padding(padding: const EdgeInsets.all(8), child: Text('Saved: $_path', style: const TextStyle(fontSize: 12)))
       ])),
     );
   }
