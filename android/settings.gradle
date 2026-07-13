@@ -1,5 +1,10 @@
 include ':app'
 
-def flutterProjectRoot = $rootDir.absoluteFile.getParentFile().toPath()
+def localPropertiesFile = new File(rootDir, "local.properties")
+def properties = new Properties()
+assert localPropertiesFile.exists(), "local.properties not found"
+localPropertiesFile.withInputStream { properties.load(it) }
 
-apply from: "$flutterProjectRoot/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+def flutterToolsPath = properties.getProperty("flutter.sdk")
+assert flutterToolsPath != null, "flutter.sdk not set in local.properties"
+apply from: "$flutterToolsPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
