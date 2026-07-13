@@ -1,29 +1,17 @@
-name: convertPDF
-description: Convert JPG and Excel files to PDF
-
+name: convertpdf
+description: A new Flutter project.
 publish_to: 'none'
-
 version: 1.0.0+1
 
 environment:
-  sdk: '^3.5.0'
-  flutter: ">=3.24.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.3.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  path_provider: ^2.1.3
-  pdf: ^3.10.8
-  image: ^4.1.7
-  excel: ^4.0.2
-  permission_handler: ^11.3.1
-  file_picker: ^6.1.1
-  open_file: ^3.3.2
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^3.0.0
+  printing: 5.11.1  # <- NO ^ HERE. PINNED VERSION
+  pdf: 3.10.7       # <- NO ^ HERE. PINNED VERSION
 
 flutter:
   uses-material-design: true
