@@ -10,12 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  printing: 5.10.3
-  pdf: 3.10.4
+  pdf: 3.10.4        # ONLY PDF NOW
   file_picker: 5.3.4
-
-dependency_overrides:
-  pdf: 3.10.4
 
 flutter:
   uses-material-design: true
