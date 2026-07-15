@@ -1,23 +1,19 @@
 workflows:
-  android-workflow:
-    name: Android APK Build
-    max_build_duration: 120
-    instance_type: mac_mini_m2
+  convertpdf-playstore:
+    name: ConvertPDF PlayStore
+    max_build_duration: 60
+    instance_type: mac_mini_m1
     environment:
-      flutter: 3.24.3
-      xcode: latest
-    working_directory: .  # <-- THIS IS THE FIX
-    cache:
-      cache_paths:
-        - $HOME/.gradle/caches
-        - $HOME/.pub-cache
+      flutter: 3.3.10
     scripts:
-      - name: Get Flutter packages
+      - name: Clean
+        script: flutter clean
+      - name: Get dependencies
         script: flutter pub get
-      - name: Build APK
-        script: flutter build apk --release
+      - name: Build AAB
+        script: flutter build appbundle --release
     artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
+      - build/app/outputs/bundle/release/*.aab
     publishing:
       email:
         recipients:
