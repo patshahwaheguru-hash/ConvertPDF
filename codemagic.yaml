@@ -1,13 +1,18 @@
 workflows:
-  convertpdf-playstore:
-    name: ConvertPDF PlayStore
+  android-workflow:
+    name: Android App Bundle Build
     max_build_duration: 60
-    instance_type: mac_mini_m1
     environment:
-      flutter: 3.3.10
+      flutter: stable
     scripts:
-      - flutter config --no-analytics  # <-- ADD THIS to skip welcome screen
-      - flutter pub get
-      - flutter build appbundle --release --verbose
+      - name: Clean project cache
+        script: |
+          flutter clean
+      - name: Fetch project dependencies
+        script: |
+          flutter pub get
+      - name: Build Android App Bundle (AAB)
+        script: |
+          flutter build appbundle --release
     artifacts:
       - build/app/outputs/bundle/release/*.aab
