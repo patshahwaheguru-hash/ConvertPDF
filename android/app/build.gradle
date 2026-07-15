@@ -4,9 +4,7 @@ plugins {
 }
 
 android {
-    // 1. ADD THIS LINE (Use your actual package name/applicationId here)
-    namespace "com.example.convertpdf" 
-    
+    namespace "com.example.convertpdf"
     compileSdkVersion 34
 
     compileOptions {
@@ -15,8 +13,7 @@ android {
     }
 
     defaultConfig {
-        // 2. Ensure your applicationId matches your namespace
-        applicationId "com.example.convertpdf" 
+        applicationId "com.example.convertpdf"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
