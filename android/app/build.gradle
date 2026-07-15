@@ -1,11 +1,4 @@
-android {
-    namespace "com.example.convertpdf"
-    compileSdkVersion 33
-    ndkVersion "21.4.7075529"
-
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 33
-        multiDexEnabled true  // <-- ADD THIS
-    }
+plugins {
+    id "com.android.application"
+    id "dev.flutter.flutter-gradle-plugin"
 }
