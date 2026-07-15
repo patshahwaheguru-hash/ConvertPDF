@@ -2,3 +2,30 @@ plugins {
     id "com.android.application"
     id "dev.flutter.flutter-gradle-plugin"
 }
+
+android {
+    // 1. ADD THIS LINE (Use your actual package name/applicationId here)
+    namespace "com.example.convertpdf" 
+    
+    compileSdkVersion 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // 2. Ensure your applicationId matches your namespace
+        applicationId "com.example.convertpdf" 
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
+}
