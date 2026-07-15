@@ -20,9 +20,15 @@ pluginManagement {
 }
 
 plugins {
-    // ADD THIS LINE BELOW to declare the core Android plugin version:
     id "com.android.application" version "8.1.0" apply false
     id "dev.flutter.flutter-gradle-plugin" version "1.0.0" apply false
 }
 
 include ':app'
+
+// THIS IS THE CRITICAL MISSING BLOCK THAT LOADS FILE_PICKER:
+def flutterProjectRoot = rootProject.projectDir.parentFile
+def pluginsFile = new File(flutterProjectRoot, '.flutter-plugins-dependencies')
+if (pluginsFile.exists()) {
+    apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+}
