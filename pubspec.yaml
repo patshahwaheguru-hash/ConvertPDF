@@ -5,14 +5,13 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
-  flutter: ">=3.3.0"
+  flutter: "3.3.10"
 
 dependencies:
   flutter:
     sdk: flutter
-  pdf: 3.10.4
-  file_picker: 5.3.4
-  # NO path_provider
+  pdf: 3.8.1        # Locked to this exact version
+  file_picker: 4.5.1 # Locked to this exact version
 
 flutter:
   uses-material-design: true
