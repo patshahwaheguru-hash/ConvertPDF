@@ -8,13 +8,11 @@ workflows:
     scripts:
       - name: Clean
         script: flutter clean
+      - name: Delete old packages
+        script: rm -rf .dart_tool .packages pubspec.lock
       - name: Get dependencies
         script: flutter pub get
       - name: Build AAB
         script: flutter build appbundle --release
     artifacts:
       - build/app/outputs/bundle/release/*.aab
-    publishing:
-      email:
-        recipients:
-          - your_email@gmail.com
