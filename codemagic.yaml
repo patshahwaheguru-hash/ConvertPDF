@@ -3,7 +3,8 @@ workflows:
     name: Android App Bundle Build
     max_build_duration: 60
     environment:
-      # DO NOT just use 'stable'. Force an explicit, reliable 3.x version:
+      # FORCE Java 17 to match modern Flutter/Gradle versions
+      java: 17
       flutter: 3.19.6 
       xcode: latest
       cocoapods: default
@@ -19,4 +20,3 @@ workflows:
           flutter build appbundle --release
     artifacts:
       - build/app/outputs/bundle/release/*.aab
-      
