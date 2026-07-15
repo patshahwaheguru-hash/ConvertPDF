@@ -1,15 +1,16 @@
-pluginManagement {
-    def flutterSdkPath = {
-        def properties = new Properties()
-        def propertiesFile = new File(settingsDir, "local.properties")
-        if (propertiesFile.exists()) {
-            propertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
-        }
-        def sdkPath = properties.getProperty("flutter.sdk")
-        assert sdkPath != null, "flutter.sdk not set in local.properties"
-        return sdkPath
-    }()
+// 1. Define the property globally at the top so line 33 can read it
+def flutterSdkPath = {
+    def properties = new Properties()
+    def propertiesFile = new File(settingsDir, "local.properties")
+    if (propertiesFile.exists()) {
+        propertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+    }
+    def sdkPath = properties.getProperty("flutter.sdk")
+    assert sdkPath != null, "flutter.sdk not set in local.properties"
+    return sdkPath
+}()
 
+pluginManagement {
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
     repositories {
@@ -26,7 +27,7 @@ plugins {
 
 include ':app'
 
-// THIS IS THE CRITICAL MISSING BLOCK THAT LOADS FILE_PICKER:
+// 2. This line can now read the global 'flutterSdkPath' variable perfectly
 def flutterProjectRoot = rootProject.projectDir.parentFile
 def pluginsFile = new File(flutterProjectRoot, '.flutter-plugins-dependencies')
 if (pluginsFile.exists()) {
