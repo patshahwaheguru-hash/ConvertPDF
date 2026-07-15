@@ -26,3 +26,8 @@ android {
         }
     }
 }
+
+// THIS BLOCK MAKES SURE FLUTTER SOURCES ARE PROPERLY GENERATED:
+flutter {
+    source '../..'
+}
