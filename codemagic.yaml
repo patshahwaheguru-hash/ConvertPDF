@@ -6,12 +6,8 @@ workflows:
     environment:
       flutter: 3.3.10
     scripts:
-      - flutter clean
+      - flutter config --no-analytics  # <-- ADD THIS to skip welcome screen
       - flutter pub get
       - flutter build appbundle --release --verbose
     artifacts:
       - build/app/outputs/bundle/release/*.aab
-    publishing:
-      email:
-        recipients:
-          - your_email@gmail.com
