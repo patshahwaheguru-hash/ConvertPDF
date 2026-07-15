@@ -1,16 +1,16 @@
-// 1. Define the property globally at the top so line 33 can read it
-def flutterSdkPath = {
-    def properties = new Properties()
-    def propertiesFile = new File(settingsDir, "local.properties")
-    if (propertiesFile.exists()) {
-        propertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
-    }
-    def sdkPath = properties.getProperty("flutter.sdk")
-    assert sdkPath != null, "flutter.sdk not set in local.properties"
-    return sdkPath
-}()
-
 pluginManagement {
+    // 1. Keep variable initialization isolated here for internal use
+    def flutterSdkPath = {
+        def properties = new Properties()
+        def propertiesFile = new File(settingsDir, "local.properties")
+        if (propertiesFile.exists()) {
+            propertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+        }
+        def sdkPath = properties.getProperty("flutter.sdk")
+        assert sdkPath != null, "flutter.sdk not set in local.properties"
+        return sdkPath
+    }()
+
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
     repositories {
@@ -27,9 +27,16 @@ plugins {
 
 include ':app'
 
-// 2. This line can now read the global 'flutterSdkPath' variable perfectly
+// 2. Read the property cleanly by safely extracting it from settings providers
+def properties = new Properties()
+def propertiesFile = new File(settingsDir, "local.properties")
+if (propertiesFile.exists()) {
+    propertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+}
+def extractedPath = properties.getProperty("flutter.sdk")
+
 def flutterProjectRoot = rootProject.projectDir.parentFile
 def pluginsFile = new File(flutterProjectRoot, '.flutter-plugins-dependencies')
-if (pluginsFile.exists()) {
-    apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+if (pluginsFile.exists() && extractedPath != null) {
+    apply from: "$extractedPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
 }
