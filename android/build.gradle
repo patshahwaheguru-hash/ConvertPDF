@@ -30,7 +30,7 @@ tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
 
-// Fixed workaround script mapped correctly outside existing closures
+// File picker namespace injector placed safely at the root level
 subprojects {
     afterEvaluate { project ->
         if (project.hasProperty("android")) {
