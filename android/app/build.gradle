@@ -1,23 +1,28 @@
 plugins {
     id "com.android.application"
+    id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
 
 android {
     namespace "com.example.convertpdf"
-    compileSdkVersion 34
+    compileSdk flutter.compileSdkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
     defaultConfig {
         applicationId "com.example.convertpdf"
-        minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 1
-        versionName "1.0.0"
+        minSdk flutter.minSdkVersion
+        targetSdk flutter.targetSdkVersion
+        versionCode flutter.versionCode
+        versionName flutter.versionName
     }
 
     buildTypes {
@@ -27,7 +32,6 @@ android {
     }
 }
 
-// THIS BLOCK MAKES SURE FLUTTER SOURCES ARE PROPERLY GENERATED:
 flutter {
     source '../..'
 }
