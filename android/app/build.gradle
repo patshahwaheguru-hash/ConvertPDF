@@ -4,7 +4,7 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-// Helper to pull configurations safely from local.properties
+// Safely extract version properties from local.properties
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
